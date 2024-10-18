@@ -1,34 +1,42 @@
 import java.util.*;
-public class rem {
-    public static void main(String[] args){
+public class reverseStringExceptNumbers {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        String str = Double.toString((double)n/m);
-        String s[] = str.split("\\.");
-        String c ="";
-        boolean found=false;
-        for(int i = 0; i < s[1].length() ; i++)
+        String s = sc.nextLine();
+        String d;
+        String[] arr = s.split(" ");
+        char[] ch;
+        char num;
+        for(String i:arr)
         {
-            c+=s[1].charAt(i);
-            for(int j = i+1; j < s[1].length() ; j++)
+            d=i;
+            ch=d.toCharArray();
+            for(int j=i.length()-1;j>=0;j--)
             {
-            if(s[1].charAt(i)==s[1].charAt(j))
-            {
-                found=true;
-                break;
+                if(ch[j]>='0' && ch[j]<='9')
+                {
+                    for(int k=0;k<i.length();k++)
+                    {
+                        if(ch[k]>='0' && ch[k]<='9' && ch[k]!=0)
+                        {
+                            System.out.print(ch[k]);
+                            ch[k]=0;
+                        }
+                    }
+                }
+                else
+                {
+                    if(j==i.length()-1)
+                    {
+                        System.out.print(Character.toUpperCase(ch[j]));
+                    }
+                    else
+                    {
+                    System.out.print(Character.toLowerCase(ch[j]));
+                    }
+                }
             }
-            else
-            {
-                c+=s[1].charAt(j);
-            }
-            }
-            if(found)
-            {
-                break;
-            }
-            c="";
+            System.out.print(" ");
         }
-        System.out.println(c);
     }
 }
